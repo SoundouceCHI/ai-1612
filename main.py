@@ -21,4 +21,4 @@ if (value):
     ]
     )
 
-txt.text(completion.choices[0].message.content)
+    txt.text(completion.choices[0].message.content)
