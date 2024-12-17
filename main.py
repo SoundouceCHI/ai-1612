@@ -9,16 +9,20 @@ print("API KEY:", key)
 
 client = OpenAI(api_key=key)
 
-value = st.text_input("Prompt...")
+value = st.chat_input("user")
 
-if (value):
-    txt = st.header("Waiting for api...")
+if (value): 
+    with st.chat_message("assistant"): 
+        st.write(value)
 
-    completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "user","content": value}
-    ]
-    )
+    with (st.chat_message("assistant")):
+        txt = st.header("Waiting for api...")
 
-    txt.text(completion.choices[0].message.content)
+        completion = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "user","content": value}
+        ]
+        )
+
+        txt.text(completion.choices[0].message.content)
